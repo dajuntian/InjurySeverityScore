@@ -62,7 +62,7 @@ injury_score <- function(indata, id_var, dx_var){
   iss_br_w_max <- dplyr::inner_join(iss_br_wide, nineTozeroMaxWide, by = 'usubjid')
   
   #calculattion based on top three score
-  #if max(max1-3) = 0 & max(1-6) <= 0 then maxis = 0
+  #if max(max1-3) = 6 & max(1-6) <= 0 then maxis = 0
   #if  max(max1-3) = 0
   
   
