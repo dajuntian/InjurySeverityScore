@@ -45,6 +45,27 @@ injury_score <- function(indata, id_var, dx_var){
   
   # transpose data to be wide
   iss_br_wide <- tidyr::spread(iss_br, issbr, score)
+  
+  #get the top 3 score after change 9 to 0
+  
+  nineTozero <- dplyr::mutate(iss_br, score = ifelse(score == 9, 0, score))
+  nineTozeroMax <- 
+      dplyr::mutate(
+      dplyr::filter(dplyr::arrange(dplyr::group_by(nineTozero, usubjid), 
+                                   usubjid, desc(score)),
+                    dplyr::row_number(usubjid) <= 3), 
+      score_seq = paste0("max-", row_number(usubjid)))
+  #remove old label and spread
+  nineTozeroMax$issbr <- NULL
+  nineTozeroMaxWide <- tidyr::spread(nineTozeroMax, score_seq, score)
+  
+  iss_br_w_max <- dplyr::inner_join(iss_br_wide, nineTozeroMaxWide, by = 'usubjid')
+  
+  #calculattion based on top three score
+  #if max(max1-3) = 0 & max(1-6) <= 0 then maxis = 0
+  #if  max(max1-3) = 0
+  
+  
 }
 
 x<-((injury_score(pt, patient_id, dx)))
