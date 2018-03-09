@@ -74,10 +74,10 @@ injury_score <- function(indata, id_var, dx_var){
                   pmax(max_1, max_2, max_3) == 6 ~ 75
                   
                 ))
-  iss_result <- dplyr::left_join(cp_indata[1],
+  iss_result <- dplyr::left_join(dplyr::distinct(cp_indata["usubjid"]),
                    iss_score, by = "usubjid")
   names(iss_result)[1] <- idVar
   iss_result
 }
 
-x<-((injury_score(pt, patient_id, dx)))
+
