@@ -54,7 +54,7 @@ injury_score <- function(indata, id_var, dx_var){
       dplyr::filter(dplyr::arrange(dplyr::group_by(nineTozero, usubjid), 
                                    usubjid, desc(score)),
                     dplyr::row_number(usubjid) <= 3), 
-      score_seq = paste0("max-", row_number(usubjid)))
+      score_seq = paste0("max_", row_number(usubjid)))
   #remove old label and spread
   nineTozeroMax$issbr <- NULL
   nineTozeroMaxWide <- tidyr::spread(nineTozeroMax, score_seq, score)
@@ -64,8 +64,20 @@ injury_score <- function(indata, id_var, dx_var){
   #calculattion based on top three score
   #if max(max1-3) = 6 & max(1-6) <= 0 then maxis = 0
   #if  max(max1-3) = 0
-  
-  
+  iss_score <- dplyr::mutate(iss_br_w_max, iss = 
+                dplyr::case_when(
+                  pmax(br_1, br_2, br_3, br_4, br_5, br_6) == 0 ~ 0,
+                  pmax(br_1, br_2, br_3, br_4, br_5, br_6) <= 5 ~ sum(c(max_1^2, max_2^2, max_3^2)),
+                  pmax(br_1, br_2, br_3, br_4, br_5, br_6) == 6 ~ 75,
+                  pmax(max_1, max_2, max_3) == 0 ~ 99,
+                  pmax(max_1, max_2, max_3) <= 5 ~ sum(c(max_1^2, max_2^2, max_3^2)),
+                  pmax(max_1, max_2, max_3) == 6 ~ 75
+                  
+                ))
+  iss_result <- dplyr::left_join(cp_indata[1],
+                   iss_score, by = "usubjid")
+  names(iss_result)[1] <- idVar
+  iss_result
 }
 
 x<-((injury_score(pt, patient_id, dx)))
