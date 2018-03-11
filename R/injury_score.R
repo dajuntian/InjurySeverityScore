@@ -2,8 +2,8 @@
 #' 
 #' @param indata A data frame
 #' @param id_var A variable for patient id
-#' @param dx_var A varaible for dx code
-#' @param has_dot Indicate whether ICD code has dot
+#' @param dx_var A character varaible for dx code
+#' @param has_dot A logical varaible indicates whether ICD code has dot
 #' @export
 #' @return A data frame contains iss score
 #' @examples
