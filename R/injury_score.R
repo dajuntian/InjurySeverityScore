@@ -1,3 +1,19 @@
+#' Calculate injury severity score from ICD-9
+#' 
+#' @param indata A data frame
+#' @param id_var A variable for patient id
+#' @param dx_var A varaible for dx code
+#' @export
+#' @return A data frame contains iss score
+#' @examples
+#' pat_id <- c(2,2,2,2,2,1,2,1,2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1)
+#' icd9 <- c('874.2', '874.8', '900.81', '900.82', '900.89', '805.06', 
+#'           'E966', '805.07', 'V14.0', '807.02', 'V70.4', '821.01', '823.20', 
+#'           '860.0', '861.01', '861.21', '861.22', '863.84', '864.04', '865.04', 
+#'           '865.09', '866.02', '868.04', '958.4')
+#' sample_data <- data.frame(subj = pat_id, code = icd9, stringsAsFactors = FALSE)
+#' injury_score(sample_data, subj, code)
+## quiets concerns of R CMD check re: the .'s that appear in pipelines
 
 injury_score <- function(indata, id_var, dx_var){
   # create a new copy of data, get variable name as string
@@ -52,9 +68,9 @@ injury_score <- function(indata, id_var, dx_var){
   nineTozeroMax <- 
       dplyr::mutate(
       dplyr::filter(dplyr::arrange(dplyr::group_by(nineTozero, usubjid), 
-                                   usubjid, desc(score)),
+                                   usubjid, dplyr::desc(score)),
                     dplyr::row_number(usubjid) <= 3), 
-      score_seq = paste0("max_", row_number(usubjid)))
+      score_seq = paste0("max_", dplyr::row_number(usubjid)))
   #remove old label and spread
   nineTozeroMax$issbr <- NULL
   nineTozeroMaxWide <- tidyr::spread(nineTozeroMax, score_seq, score)
