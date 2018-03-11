@@ -3,6 +3,7 @@
 #' @param indata A data frame
 #' @param id_var A variable for patient id
 #' @param dx_var A varaible for dx code
+#' @param has_dot Indicate whether ICD code has dot
 #' @export
 #' @return A data frame contains iss score
 #' @examples
@@ -15,7 +16,7 @@
 #' injury_score(sample_data, subj, code)
 ## quiets concerns of R CMD check re: the .'s that appear in pipelines
 
-injury_score <- function(indata, id_var, dx_var){
+injury_score <- function(indata, id_var, dx_var, has_dot = TRUE){
   # create a new copy of data, get variable name as string
   idVar <- deparse(substitute(id_var))
   dxVar <- deparse(substitute(dx_var)) 
@@ -23,9 +24,9 @@ injury_score <- function(indata, id_var, dx_var){
   
   #rename variable
   names(cp_indata) <- c("usubjid", "dx")
+  if (has_dot){dx_dict <- ntab_s2}
+  else {dx_dict <- ntab_s1}
   
-  #join with ntab_s2
-  dx_dict <- ntab_s2
 
   pt_data_w_dxdict <- dplyr::inner_join(cp_indata, dx_dict, by = "dx")
   
