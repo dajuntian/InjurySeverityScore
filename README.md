@@ -19,3 +19,8 @@ icd9 <- c('874.2', '874.8', '900.81', '900.82', '900.89', '805.06',
           '865.09', '866.02', '868.04', '958.4')
 sample_data <- data.frame(subj = pat_id, code = icd9, stringsAsFactors = FALSE)
 ````
+3. Load the package and calculate injury severity score.
+```R
+library(InjurySeverityScore)
+injury_score(sample_data, subj, code, has_dot = T)
+```
