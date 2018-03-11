@@ -34,7 +34,7 @@ icd9 <- c('8742', '8748', '90081', '90082', '90089', '80506',
 sample_data <- data.frame(subj = pat_id, code = icd9, stringsAsFactors = FALSE)
 injury_score(sample_data, subj, code, has_dot = F)
 ```
-## Both example would have the following output:
+## Both examples would have the following output:
 ```R
 #  subj br_1 br_2 br_3 br_4 br_5 br_6 max_1 max_2 max_3 iss
 #1    2    3    0    0    0    0    1     3     1     0  10
