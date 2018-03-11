@@ -11,9 +11,9 @@ injury_score(indata, id_var, dx_var, has_dot = TRUE)
 
 \item{id_var}{A variable for patient id}
 
-\item{dx_var}{A varaible for dx code}
+\item{dx_var}{A character varaible for dx code}
 
-\item{has_dot}{Indicate whether ICD code has dot}
+\item{has_dot}{A logical varaible indicates whether ICD code has dot}
 }
 \value{
 A data frame contains iss score
@@ -29,4 +29,7 @@ icd9 <- c('874.2', '874.8', '900.81', '900.82', '900.89', '805.06',
           '865.09', '866.02', '868.04', '958.4')
 sample_data <- data.frame(subj = pat_id, code = icd9, stringsAsFactors = FALSE)
 injury_score(sample_data, subj, code)
+}
+\seealso{
+\url{https://github.com/dajuntian/InjurySeverityScore/blob/master/README.md}
 }

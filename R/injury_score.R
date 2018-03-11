@@ -15,7 +15,7 @@
 #' sample_data <- data.frame(subj = pat_id, code = icd9, stringsAsFactors = FALSE)
 #' injury_score(sample_data, subj, code)
 ## quiets concerns of R CMD check re: the .'s that appear in pipelines
-
+#' @seealso \url{https://github.com/dajuntian/InjurySeverityScore/blob/master/README.md}
 injury_score <- function(indata, id_var, dx_var, has_dot = TRUE){
   # create a new copy of data, get variable name as string
   idVar <- deparse(substitute(id_var))
