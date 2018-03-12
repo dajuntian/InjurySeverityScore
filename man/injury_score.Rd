@@ -4,7 +4,7 @@
 \alias{injury_score}
 \title{Calculate injury severity score from ICD-9}
 \usage{
-injury_score(indata, id_var, dx_var, has_dot = TRUE)
+injury_score(indata, id_var, dx_var, has_dot = TRUE, tall = TRUE)
 }
 \arguments{
 \item{indata}{A data frame}
@@ -14,6 +14,8 @@ injury_score(indata, id_var, dx_var, has_dot = TRUE)
 \item{dx_var}{A character varaible for dx code}
 
 \item{has_dot}{A logical varaible indicates whether ICD code has dot}
+
+\item{tall}{A logical variable incates data is tall (T) or wide (F)}
 }
 \value{
 A data frame contains iss score

@@ -4,6 +4,7 @@
 #' @param id_var A variable for patient id
 #' @param dx_var A character varaible for dx code
 #' @param has_dot A logical varaible indicates whether ICD code has dot
+#' @param tall A logical variable incates data is tall (T) or wide (F)
 #' @export
 #' @return A data frame contains iss score
 #' @examples
@@ -16,11 +17,14 @@
 #' injury_score(sample_data, subj, code)
 ## quiets concerns of R CMD check re: the .'s that appear in pipelines
 #' @seealso \url{https://github.com/dajuntian/InjurySeverityScore/blob/master/README.md}
-injury_score <- function(indata, id_var, dx_var, has_dot = TRUE){
+injury_score <- function(indata, id_var, dx_var, has_dot = TRUE, tall = TRUE){
   # create a new copy of data, get variable name as string
   idVar <- deparse(substitute(id_var))
   dxVar <- deparse(substitute(dx_var)) 
-  cp_indata <- dplyr::select(indata, c(idVar, dxVar))
+  if (tall){cp_indata <- dplyr::select(indata, c(idVar, dxVar))}
+  else {
+    cp_indata <- as.data.frame(.helper.wide2tall(indata, idVar, dxVar))
+    }
   
   #rename variable
   names(cp_indata) <- c("usubjid", "dx")
@@ -29,7 +33,7 @@ injury_score <- function(indata, id_var, dx_var, has_dot = TRUE){
   
 
   pt_data_w_dxdict <- dplyr::inner_join(cp_indata, dx_dict, by = "dx")
-  
+
   #get maximum score with 9
   pt_data_w_dxdict_w9 <- dplyr::filter(pt_data_w_dxdict, severity == 9)
   w_9 <- dplyr::summarise(dplyr::group_by(pt_data_w_dxdict_w9, usubjid, issbr), 
@@ -100,7 +104,7 @@ injury_score <- function(indata, id_var, dx_var, has_dot = TRUE){
 .helper.wide2tall <- function(df, id, prefix){
   #define a helper function to transpose data
   df_wide <- dplyr::select(df, id, dplyr::starts_with(prefix))
-  tall <- tidyr::gather(df_wide, "code_seq", prefix, 2:ncol(df_wide))
+  tall <- tidyr::gather(df_wide, "code_seq", "dx", 2:ncol(df_wide))
   #remove NA and code_seq column
-  dplyr::filter(dplyr::select(tall, id, prefix), !is.na(prefix))
+  dplyr::ungroup(dplyr::filter(dplyr::select(tall, id, dx), !is.na(dx)))
 }
