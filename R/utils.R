@@ -17,4 +17,8 @@ injury_score(sample_data, subj, code)
 #  subj br_1 br_2 br_3 br_4 br_5 br_6 max_1 max_2 max_3 iss
 #1    2    3    0    0    0    0    1     3     1     0  10
 #2    1    2    0    3    5    3    0     5     3     3  43
+
+
+
+
 }
