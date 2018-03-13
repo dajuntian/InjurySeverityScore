@@ -15,9 +15,20 @@
 #'           '865.09', '866.02', '868.04', '958.4')
 #' sample_data <- data.frame(subj = pat_id, code = icd9, stringsAsFactors = FALSE)
 #' injury_score(sample_data, subj, code)
+#' 
+#' data2 <- data.frame(pid = c(1,2), diag1 = c('900.89', '805.06'),
+#'                     diag2 = c('863.84', '865.04'))
+#' injury_score(data2, pid, diag, tall = FALSE)
 ## quiets concerns of R CMD check re: the .'s that appear in pipelines
 #' @seealso \url{https://github.com/dajuntian/InjurySeverityScore/blob/master/README.md}
 injury_score <- function(indata, id_var, dx_var, has_dot = TRUE, tall = TRUE){
+  # make local variables
+  dx <- NULL
+  severity <- NULL
+  usubjid <- NULL
+  issbr <- NULL
+  score_seq <- score <- NULL
+  subj <- code <- NULL
   # create a new copy of data, get variable name as string
   idVar <- deparse(substitute(id_var))
   dxVar <- deparse(substitute(dx_var)) 
@@ -102,9 +113,13 @@ injury_score <- function(indata, id_var, dx_var, has_dot = TRUE, tall = TRUE){
 }
 
 .helper.wide2tall <- function(df, id, prefix){
+  dx <- NULL
   #define a helper function to transpose data
   df_wide <- dplyr::select(as.data.frame(df), id, dplyr::starts_with(prefix))
   tall <- tidyr::gather(df_wide, "code_seq", "dx", 2:ncol(df_wide))
   #remove NA and code_seq column
   dplyr::ungroup(dplyr::filter(dplyr::select(tall, id, dx), !is.na(dx)))
 }
+
+
+

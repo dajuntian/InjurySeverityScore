@@ -31,6 +31,10 @@ icd9 <- c('874.2', '874.8', '900.81', '900.82', '900.89', '805.06',
           '865.09', '866.02', '868.04', '958.4')
 sample_data <- data.frame(subj = pat_id, code = icd9, stringsAsFactors = FALSE)
 injury_score(sample_data, subj, code)
+
+data2 <- data.frame(pid = c(1,2), diag1 = c('900.89', '805.06'),
+                    diag2 = c('863.84', '865.04'))
+injury_score(data2, pid, diag, tall = FALSE)
 }
 \seealso{
 \url{https://github.com/dajuntian/InjurySeverityScore/blob/master/README.md}
