@@ -6,9 +6,16 @@ icd9 <- c('874.2', '874.8', '900.81', '900.82', '900.89', '805.06',
 sample_data <- data.frame(subj = pat_id, code = icd9, stringsAsFactors = FALSE)
 injury_score(sample_data, subj, code)
 
+sample_data1 <- sample_data[c("code", "subj")]
+names(sample_data1) <- c("diag", "ptid1")
+injury_score(sample_data1, ptid1, diag)
+
 data_wide <- sample_data %>% arrange(subj) %>% 
   group_by(subj) %>% 
   mutate(seq = paste0("dx", row_number())) %>% 
   spread(key = seq, value = code)
 injury_score(data_wide, subj, dx, tall = F)
 
+data_wide1 <- data_wide[c("dx1",'subj', "dx2")]
+names(data_wide1) <- c("ds1", "refno", "ds2") 
+injury_score(data_wide1, refno, ds, tall = F)
