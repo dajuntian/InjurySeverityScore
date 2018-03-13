@@ -6,7 +6,7 @@ https://ideas.repec.org/c/boc/bocode/s457028.html. The dictionary of mapping ICD
 Function `injury_score` requires the input dataset has at least two variables. One is patient id and the other is the icd9 code. The icd9 code must be **character**. The icd9 code could be with or without dot and is indicated through `has_dot`.
 ## Output Dataset
 Output dataset will use the patient id as the primary key and contains variable `iss` which is the injury severity score. For the definition of injury severity score, go to https://en.wikipedia.org/wiki/Injury_Severity_Score. Currently, the output dataset has some extra variables for debug purpose.
-## Example Code (ICD code with dot) 
+## Example 1 (ICD code with dot) 
 1. If you don't have the package, install through one of the following:
 * `install.packages('InjurySeverityScore')`
 * `devtools::install_github("dajuntian/InjurySeverityScore")`
@@ -25,7 +25,7 @@ library(InjurySeverityScore)
 ?InjurySeverityScore::injury_score #see help
 injury_score(sample_data, subj, code, has_dot = T)
 ```
-## Example (ICD code without dot)
+## Example 2 (ICD code without dot)
 ```R
 pat_id <- c(2,2,2,2,2,1,2,1,2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1)
 icd9 <- c('8742', '8748', '90081', '90082', '90089', '80506', 
@@ -41,3 +41,9 @@ injury_score(sample_data, subj, code, has_dot = F)
 #1    2    3    0    0    0    0    1     3     1     0  10
 #2    1    2    0    3    5    3    0     5     3     3  43
 ```          
+## Example 3 (Data in wide form instead of tall form)
+```R
+data2 <- data.frame(pid = c(1,2), diag1 = c('900.89', '805.06'),
+                    diag2 = c('863.84', '865.04'))
+injury_score(data2, pid, diag, tall = FALSE)
+```
