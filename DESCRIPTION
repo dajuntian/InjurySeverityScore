@@ -2,7 +2,7 @@ Package: InjurySeverityScore
 Title: Translate ICD-9 into Injury Severity Score
 Version: 0.0.0.1
 Authors@R: person("Dajun", "Tian", email = "tiandajun@gmail.com", role = c("aut", "cre"))
-Description: Wrap up a package to alculate the injury severity score (ISS)
+Description: Calculate the injury severity score (ISS)
     based on the dictionary in ICDPIC from ideas.repec.org. The original code was written in 
     Stata, so I implement the same logic in R for easy use.
     Ref: David E. Clark & Turner M. Osler & David R. Hahn, 2009. 
@@ -11,7 +11,7 @@ Description: Wrap up a package to alculate the injury severity score (ISS)
     categories and/or scores," Statistical Software Components S457028, 
     Boston College Department of Economics, revised 29 Oct 2010.
 Depends: R (>= 3.3.0)
-License: file LICENSE
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1

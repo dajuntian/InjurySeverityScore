@@ -45,7 +45,7 @@ load("testdata.rda")
 injury_score(indata_long, subj, code)
 
 
-data.wide.big <- as.data.frame(data_wide)[rep(c(1,2),100000),]
+data.wide.big <- as.data.frame(data_wide)[rep(c(1,2),1000000),]
 data.wide.big$subj <- 1:nrow(data.wide.big)
 y2 <- injury_score(data.wide.big, subj, dx, tall = F)
 
