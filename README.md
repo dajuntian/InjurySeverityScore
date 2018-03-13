@@ -22,6 +22,7 @@ sample_data <- data.frame(subj = pat_id, code = icd9, stringsAsFactors = FALSE)
 3. Load the package and calculate injury severity score.
 ```R
 library(InjurySeverityScore)
+?InjurySeverityScore::injury_score #see help
 injury_score(sample_data, subj, code, has_dot = T)
 ```
 ## Example (ICD code without dot)
