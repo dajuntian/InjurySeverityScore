@@ -8,7 +8,7 @@ Function `injury_score` requires the input dataset has at least two variables. O
 Output dataset will use the patient id as the primary key and contains variable `iss` which is the injury severity score. For the definition of injury severity score, go to https://en.wikipedia.org/wiki/Injury_Severity_Score. Currently, the output dataset has some extra variables for debug purpose.
 ## Example 1 (ICD code with dot) 
 1. If you don't have the package, install through one of the following:
-* `install.packages('InjurySeverityScore')`
+* ~~`install.packages('InjurySeverityScore')`~~ TBD
 * `devtools::install_github("dajuntian/InjurySeverityScore")`
 2. Generate sample dataset  
 ``` R
