@@ -53,4 +53,7 @@ injury_score(data.wide.big, subj, dx, tall = F)
 ## testing enque-euq branch
 ## at github
 
+data.wide.big <- as.data.frame(data_wide)[rep(c(1,2),10000000),]
+data.wide.big$subj <- 1:nrow(data.wide.big)
+injury_score(data.wide.big, subj, dx, tall = F)
 
