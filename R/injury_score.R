@@ -119,6 +119,7 @@ injury_score <- function(indata, id_var, dx_var, has_dot = TRUE, tall = TRUE){
   
   df_wide <- dplyr::select(df, !!id, dplyr::starts_with(rlang::quo_name(prefix)))
   df_wide <- tidyr::gather(df_wide, code_seq, !!prefix, 2:ncol(df_wide))
+  
   #remove NA and code_seq column
   tidyr::drop_na(dplyr::select(df_wide, 1, 3))
 }
