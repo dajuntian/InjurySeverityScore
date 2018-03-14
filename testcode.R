@@ -42,13 +42,13 @@ data_wide1 <- data_wide[c("dx1",'subj', "dx2")]
 names(data_wide1) <- c("ds1", "refno", "ds2") 
 injury_score(data_wide1, refno, ds, tall = F)
 
-load("testdata.rda")
+load("../testdata.rda")
 injury_score(indata_long, subj, code)
 
 
 data.wide.big <- as.data.frame(data_wide)[rep(c(1,2),1000000),]
 data.wide.big$subj <- 1:nrow(data.wide.big)
-y2 <- injury_score(data.wide.big, subj, dx, tall = F)
+injury_score(data.wide.big, subj, dx, tall = F)
 
 ## testing enque-euq branch
 ## at github
