@@ -3,7 +3,7 @@ Translate ICD-9 to Injury Severity Score. This is rewritten from STATA into R pa
 https://ideas.repec.org/c/boc/bocode/s457028.html. The dictionary of mapping ICD9 to body region and severity score were also downloaded from [ICDPIC](https://ideas.repec.org/c/boc/bocode/s457028.html).
 
 ## Input Dataset
-Function `injury_score` requires the input dataset has at least two variables. One is patient id and the other is the icd9 code. The icd9 code must be **character**. The icd9 code could be with or without dot and is indicated through `has_dot`.
+Function `injury_score` requires the input dataset has at least two variables. One is patient id and the other is the icd9 code. The icd9 code must be **character**. The icd9 code could be with or without dot and is indicated through `has_dot` parameter.
 ## Output Dataset
 Output dataset will use the patient id as the primary key and contains variable `iss` which is the injury severity score. For the definition of injury severity score, go to https://en.wikipedia.org/wiki/Injury_Severity_Score. Currently, the output dataset has some extra variables for debug purpose.
 ## Example 1 (ICD code with dot) 
