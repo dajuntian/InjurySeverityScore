@@ -113,12 +113,14 @@ injury_score <- function(indata, id_var, dx_var, has_dot = TRUE, tall = TRUE){
 }
 
 .helper.wide2tall <- function(df, id, prefix){
-  dx <- NULL
-  #define a helper function to transpose data
-  df_wide <- dplyr::select(as.data.frame(df), id, dplyr::starts_with(prefix))
-  tall <- tidyr::gather(df_wide, "code_seq", "dx", 2:ncol(df_wide))
+  #define a helper function to transpose data and remove NA
+  id <- rlang::enquo(id); print(id)
+  prefix <- rlang::enquo(prefix); print(prefix)
+  
+  df_wide <- dplyr::select(df, !!id, dplyr::starts_with(rlang::quo_name(prefix)))
+  df_wide <- tidyr::gather(df_wide, code_seq, !!prefix, 2:ncol(df_wide))
   #remove NA and code_seq column
-  dplyr::ungroup(dplyr::filter(dplyr::select(tall, id, dx), !is.na(dx)))
+  tidyr::drop_na(dplyr::select(df_wide, 1, 3))
 }
 
 

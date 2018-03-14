@@ -34,6 +34,7 @@ injury_score(sample_data1, ptid1, diag)
 data_wide <- sample_data %>% arrange(subj) %>% 
   group_by(subj) %>% 
   mutate(seq = paste0("dx", row_number())) %>% 
+  ungroup() %>% 
   spread(key = seq, value = code)
 injury_score(data_wide, subj, dx, tall = F)
 
