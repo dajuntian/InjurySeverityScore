@@ -4,8 +4,9 @@ https://ideas.repec.org/c/boc/bocode/s457028.html. The dictionary of mapping ICD
 
 ## Input Dataset
 Function `injury_score` requires the input dataset has at least two variables. One is patient id and the other is the icd9 code. The icd9 code must be **character**. The icd9 code could be with or without dot and is indicated through `has_dot` parameter.
-## Output Dataset
-Output dataset will use the patient id as the primary key and contains variable `iss` which is the injury severity score. For the definition of injury severity score, go to https://en.wikipedia.org/wiki/Injury_Severity_Score. Other variables `br1-br6` are the maximum score for each body region. And max1-max3 are the top 3 scores out of all.
+## Output
+Output dataset will use the patient id as the primary key and contains variable `iss` which is the injury severity score. For the definition of injury severity score, go to https://en.wikipedia.org/wiki/Injury_Severity_Score. Other variables `br1-br6` are the maximum score for each body region. `9` indicated unknown score and `0` indicated no valid injury code under that body region. And max1-max3 are the top 3 scores out of all.
+A score of **99** for `iss` indicates that valid injury ICD-9 exists but none had known injury score.
 ## Example 1 (ICD code with dot) 
 1. If you don't have the package, install through one of the following:
 * `install.packages('InjurySeverityScore')`
