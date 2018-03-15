@@ -44,7 +44,7 @@ injury_score(sample_data, subj, code, has_dot = F)
 ## Example 3 (Data in wide form instead of tall form)
 ```R
 data2 <- data.frame(pid = c(1,2), diag1 = c('900.89', '805.06'),
-                    diag2 = c('863.84', '865.04'))
+                    diag2 = c('863.84', '865.04'),stringsAsFactors = FALSE)
 #  pid  diag1  diag2
 #1   1 900.89 863.84
 #2   2 805.06 865.04                
