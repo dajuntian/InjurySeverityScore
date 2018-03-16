@@ -1,10 +1,10 @@
 Package: InjurySeverityScore
-Title: Translate ICD-9 into Injury Severity Score Based on 'ICDPIC V3.0'
+Title: Translate ICD-9 into Injury Severity Score
 Version: 0.0.0.1
 Authors@R: person("Dajun", "Tian", email = "tiandajun@gmail.com", role = c("aut", "cre"))
 Description: Calculate the injury severity score (ISS)
     based on the dictionary in 'ICDPIC' from ideas.repec.org. The original code was written in 
-    'STATA 11', so I implement the same logic in 'R' for easy use.
+    'STATA 11', so I implement the same logic for easier access.
     Ref: David E. Clark & Turner M. Osler & David R. Hahn, 2009. 
     "ICDPIC: Stata module to provide methods for translating International 
     Classification of Diseases (Ninth Revision) diagnosis codes into standard injury 
