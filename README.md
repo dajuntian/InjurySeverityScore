@@ -10,8 +10,8 @@ Output dataset will use the patient id as the primary key and contains variable 
 A score of **99** for `iss` indicates that valid injury ICD-9 exists but none had known injury score.
 ## Example 1 (ICD code with dot) 
 1. If you don't have the package, install through one of the following:
-* `install.packages('InjurySeverityScore')`
-* `devtools::install_github("dajuntian/InjurySeverityScore")`
+* ~~`install.packages('InjurySeverityScore')`~~
+* `install.packages("devtools"); devtools::install_github("dajuntian/InjurySeverityScore")`
 2. Generate sample dataset  
 ``` R
 pat_id <- c(2,2,2,2,2,1,2,1,2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1)
