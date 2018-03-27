@@ -3,7 +3,7 @@ Title: Translate ICD-9 into Injury Severity Score
 Version: 0.0.0.1
 Authors@R: c(
     person("Dajun", "Tian", email = "tiandajun@gmail.com", role = c("aut", "cre")),
-    person("David E. Clark & Turner M. Osler & David R. Hahn", role = "dtc", comment = "map from ICD-9"))
+    person("David E. Clark & Turner M. Osler & David R. Hahn", role = "dtc", comment = "map from ICD-9, cited from 'ICDPIC'"))
 Description: Calculate the injury severity score (ISS)
     based on the dictionary in 'ICDPIC' from <https://ideas.repec.org/c/boc/bocode/s457028.html>. The original code was written in 
     'STATA 11'. The original 'STATA' code was written by David Clark, 
@@ -21,4 +21,4 @@ RoxygenNote: 6.0.1
 Imports: dplyr,
     tidyr,
     rlang
-URL: <https://github.com/dajuntian/InjurySeverityScore>
+
